@@ -17,9 +17,16 @@ app.get('/', function (req, res) {
 
 
 app.post('/api/fileanalyse', upload.single('upfile'), function (req, res, next) {
+
+  if (!req.file) {
+    return res.status(400).json({
+      error: "No file uploaded"
+    })
+  }
   const originalName = req.file.originalname;
   const type = req.file.mimetype;
   const size = req.file.size;
+
   res.send({
     "name": originalName,
     "type": type,

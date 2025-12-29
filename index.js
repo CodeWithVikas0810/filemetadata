@@ -35,8 +35,7 @@ app.post('/api/fileanalyse', upload.single('upfile'), function (req, res, next) 
   console.log(req.file)
 })
 
-
-
+module.exports = app
 
 const port = process.env.PORT || 3000;
 app.listen(port, function () {

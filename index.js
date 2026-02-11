@@ -16,21 +16,21 @@ app.get('/', function (req, res) {
 });
 
 
-app.post('/api/fileanalyse', upload.single('upfile'), function (req, res, next) {
+app.post('/api/fileanalyse', upload.single('upfile'), function (req, res) {
 
   if (!req.file) {
     return res.status(400).json({
       error: "No file uploaded"
     })
   }
-  const originalName = req.file.originalname;
-  const type = req.file.mimetype;
-  const size = req.file.size;
+  // const originalName = req.file.originalname;
+  // const type = req.file.mimetype;
+  // const size = req.file.size;
 
-  res.send({
-    name: originalName,
-    type: type,
-    size: size
+  res.json({
+    name: req.file.originalname,
+    type: req.file.mimetype,
+    size: req.file.size
   })
   console.log(req.file)
 })
